@@ -136,6 +136,9 @@ namespace Musem.Pages.Admin
             // Удаляем связанные уведомления
             DeleteNotificationForExhibition(exhibitionId);
 
+            // Удаляем связанные билеты
+            DeleteTicketsForExhibition(exhibitionId);
+
             string connectionString = @"Data Source=(localdb)\Marsel;Initial Catalog=Музей;Integrated Security=True";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -151,6 +154,24 @@ namespace Musem.Pages.Admin
                 }
 
                 MessageBox.Show("Выставка успешно удалена.");
+            }
+        }
+
+        private void DeleteTicketsForExhibition(int exhibitionId)
+        {
+            string connectionString = @"Data Source=(localdb)\Marsel;Initial Catalog=Музей;Integrated Security=True";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Удаляем связанные билеты
+                string deleteTicketsQuery = "DELETE FROM Tickets WHERE Id_Exhibition = @Id";
+                using (SqlCommand command = new SqlCommand(deleteTicketsQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", exhibitionId);
+                    command.ExecuteNonQuery();
+                }
             }
         }
 

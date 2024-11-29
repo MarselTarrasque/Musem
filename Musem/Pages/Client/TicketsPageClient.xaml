@@ -26,12 +26,16 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <ui:ListView x:Name="ReportsListView" Grid.Row="2" Grid.ColumnSpan="3" Margin="156,11,157,47" Grid.RowSpan="3">
+        <ui:ListView x:Name="ReportsListView" 
+             Grid.Row="2" Grid.ColumnSpan="2" 
+             Margin="156,11,349,47" 
+             Grid.RowSpan="3" 
+             MouseDoubleClick="ReportsListView_MouseDoubleClick">
             <ui:ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="50"/>
                     <GridViewColumn Header="Выставка" DisplayMemberBinding="{Binding ExhibitionTitle}" Width="200"/>
-                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date}" Width="100"/>
+                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date}" Width="160"/>
                     <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Price}" Width="100"/>
                 </GridView>
             </ui:ListView.View>

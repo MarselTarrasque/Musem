@@ -78,5 +78,11 @@ namespace Musem.NavPanel
         {
             MainWindow.Instance.FrameMain.Navigate(new Pages.Client.TicketsPageClient(id));
         }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.FrameMain.Navigate(new Pages.LoginPage());
+            MainWindow.Instance.FrameNavBar_.Navigate(null);
+        }
     }
 }

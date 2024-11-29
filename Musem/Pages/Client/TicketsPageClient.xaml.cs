@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Musem.Pages.Client.components;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Musem.Pages.Client
 {
@@ -63,5 +65,22 @@ namespace Musem.Pages.Client
 
             return tickets;
         }
+        private void ReportsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // Получаем выбранный элемент
+            var selectedTicket = ReportsListView.SelectedItem as Ticket; // Замените YourTicketClass на ваш реальный класс
+
+            if (selectedTicket != null)
+            {
+                // Получаем ID выбранного билета
+                int ticketId = selectedTicket.Id;
+
+                // Создаем экземпляр окна TicketWindow с переданным ID
+                TicketWindow ticketWindow = new TicketWindow(ticketId); // Предполагается, что у вас есть конструктор TicketWindow(int ticketId)
+                ticketWindow.Show(); // Открываем окно
+            }
+        }
+
+
     }
 }
